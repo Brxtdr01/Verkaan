@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>MyLang Translator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      padding: 40px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      outline: none;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e4ed8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MyLang Translate</h1>
+
+  <div class="box">
+    <label>Mot en français :</label>
+    <input id="inputWord" type="text">
+
+    <button onclick="translateWord()">Traduire</button>
+
+    <h3>Traduction :</h3>
+    <textarea id="output" rows="4" disabled></textarea>
+  </div>
+
+  <script>
+    async function translateWord() {
+      const word = document.getElementById("inputWord").value;
+
+      const res = await fetch("/api/translate?word=" + encodeURIComponent(word));
+      const data = await res.json();
+
+      document.getElementById("output").value =
+        data.translation ?? "Aucune traduction trouvée.";
+    }
+  </script>
+
+</body>
+</html>
