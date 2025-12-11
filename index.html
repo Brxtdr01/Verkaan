@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>MyLang Translator</title>
+  <title>Osh Translator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -41,7 +41,7 @@
 </head>
 <body>
 
-  <h1>MyLang Translate</h1>
+  <h1>Osh translator</h1>
 
   <div class="box">
     <label>Mot en français :</label>
@@ -53,17 +53,7 @@
     <textarea id="output" rows="4" disabled></textarea>
   </div>
 
-  <script>
-    async function translateWord() {
-      const word = document.getElementById("inputWord").value;
-
-      const res = await fetch("/api/translate?word=" + encodeURIComponent(word));
-      const data = await res.json();
-
-      document.getElementById("output").value =
-        data.translation ?? "Aucune traduction trouvée.";
-    }
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
